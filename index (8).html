@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StreamMax IPTV - A Nova Forma de Assistir TV!</title>
+    <meta name="description" content="Canais ao vivo, filmes, séries e esportes por um preço que cabe no seu bolso. Teste grátis por 24h!">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 1px solid #00ff88;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #00ff88;
+            text-shadow: 0 0 10px #00ff88;
+        }
+
+        .header-btn {
+            background: linear-gradient(45deg, #00ff88, #00cc6a);
+            color: #000;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+        }
+
+        .header-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 255, 136, 0.4);
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            text-decoration: none;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            background: radial-gradient(ellipse at center, rgba(0, 255, 136, 0.1) 0%, transparent 70%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #00ff88, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: #cccccc;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-btn {
+            background: linear-gradient(45deg, #00ff88, #00cc6a);
+            color: #000;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 25px rgba(0, 255, 136, 0.4);
+            margin-bottom: 40px;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 255, 136, 0.6);
+        }
+
+        .hero-image {
+            max-width: 600px;
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 255, 136, 0.2);
+        }
+
+        /* Content Categories */
+        .categories {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #00ff88;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .category-card {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 204, 106, 0.05));
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.2);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #00ff88;
+        }
+
+        .category-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #00ff88;
+        }
+
+        .category-list {
+            list-style: none;
+            font-size: 1.1rem;
+            color: #cccccc;
+        }
+
+        .category-list li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .category-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        /* Benefits */
+        .benefits {
+            padding: 80px 0;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid #00ff88;
+        }
+
+        .benefit-icon {
+            font-size: 2rem;
+            color: #00ff88;
+            margin-right: 20px;
+        }
+
+        .benefit-text {
+            font-size: 1.1rem;
+            color: #ffffff;
+        }
+
+        /* Pricing */
+        .pricing {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .pricing-card {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 204, 106, 0.05));
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card.popular {
+            border: 2px solid #00ff88;
+            transform: scale(1.05);
+        }
+
+        .pricing-card.popular:before {
+            content: "MAIS POPULAR";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #00ff88;
+            color: #000;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.2);
+        }
+
+        .pricing-card.popular:hover {
+            transform: translateY(-10px) scale(1.05);
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #00ff88;
+        }
+
+        .plan-price {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .plan-period {
+            color: #cccccc;
+            margin-bottom: 30px;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .plan-features li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+            color: #cccccc;
+        }
+
+        .plan-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 4px solid #00ff88;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #cccccc;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            border: 2px solid #00ff88;
+        }
+
+        .author-info h4 {
+            color: #00ff88;
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* FAQ */
+        .faq {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: none;
+            border: none;
+            color: #ffffff;
+            padding: 20px;
+            width: 100%;
+            text-align: left;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            background: rgba(0, 255, 136, 0.1);
+        }
+
+        .faq-answer {
+            padding: 0 20px 20px;
+            color: #cccccc;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0a0a0a;
+            padding: 60px 0 30px;
+            border-top: 1px solid #00ff88;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: #00ff88;
+            margin-bottom: 20px;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #cccccc;
+            text-decoration: none;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: #00ff88;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            background: #00ff88;
+            color: #000;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.4);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #999;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.popular {
+                transform: none;
+            }
+
+            .pricing-card.popular:hover {
+                transform: translateY(-10px);
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero {
+                padding: 140px 0 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">StreamMax IPTV</div>
+                <a href="#" class="header-btn">Teste Grátis</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/5511999999999" class="whatsapp-btn" target="_blank">📱</a>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>A Nova Forma de Assistir TV!</h1>
+            <p>Canais ao vivo, filmes, séries, esportes e muito mais por um preço que cabe no seu bolso.</p>
+            <a href="#" class="cta-btn">Experimente Grátis por 24h</a>
+            <br>
+            <img src="/placeholder.svg?height=400&width=600" alt="Smart TV com canais IPTV" class="hero-image">
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Conteúdo Premium Para Toda Família</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">⚽</div>
+                    <h3>Esportes</h3>
+                    <ul class="category-list">
+                        <li>Premiere FC</li>
+                        <li>SporTV 1, 2, 3</li>
+                        <li>ESPN Brasil</li>
+                        <li>TNT Sports</li>
+                        <li>Combate</li>
+                        <li>Fox Sports</li>
+                        <li>Band Sports</li>
+                    </ul>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🎬</div>
+                    <h3>Filmes e Séries</h3>
+                    <ul class="category-list">
+                        <li>Netflix</li>
+                        <li>Telecine Premium</li>
+                        <li>HBO Max</li>
+                        <li>Disney+</li>
+                        <li>Star+</li>
+                        <li>Globoplay</li>
+                        <li>Amazon Prime</li>
+                    </ul>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">📺</div>
+                    <h3>TV ao Vivo</h3>
+                    <ul class="category-list">
+                        <li>Globo HD</li>
+                        <li>Record TV</li>
+                        <li>SBT</li>
+                        <li>Band</li>
+                        <li>CNN Brasil</li>
+                        <li>Multishow</li>
+                        <li>Discovery Channel</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <h2 class="section-title">Por Que Escolher o StreamMax?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">📊</div>
+                    <div class="benefit-text">+10.000 canais e conteúdos on demand</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🎯</div>
+                    <div class="benefit-text">Qualidade Full HD e 4K</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">💬</div>
+                    <div class="benefit-text">Suporte via WhatsApp 24/7</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">📱</div>
+                    <div class="benefit-text">Funciona em Smart TVs, TV Box, celular e PC</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">⚡</div>
+                    <div class="benefit-text">Estabilidade garantida</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔄</div>
+                    <div class="benefit-text">Atualizações automáticas</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing">
+        <div class="container">
+            <h2 class="section-title">Escolha Seu Plano</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3 class="plan-name">Plano Mensal</h3>
+                    <div class="plan-price">R$ 29,90</div>
+                    <div class="plan-period">por mês</div>
+                    <ul class="plan-features">
+                        <li>Todos os canais</li>
+                        <li>Qualidade HD/4K</li>
+                        <li>Suporte 24/7</li>
+                        <li>3 telas simultâneas</li>
+                    </ul>
+                    <a href="#" class="cta-btn">Assinar Agora</a>
+                </div>
+                <div class="pricing-card popular">
+                    <h3 class="plan-name">Plano Trimestral</h3>
+                    <div class="plan-price">R$ 79,90</div>
+                    <div class="plan-period">3 meses (R$ 26,63/mês)</div>
+                    <ul class="plan-features">
+                        <li>Todos os canais</li>
+                        <li>Qualidade HD/4K</li>
+                        <li>Suporte 24/7</li>
+                        <li>5 telas simultâneas</li>
+                        <li>Economia de R$ 9,80</li>
+                    </ul>
+                    <a href="#" class="cta-btn">Assinar Agora</a>
+                </div>
+                <div class="pricing-card">
+                    <h3 class="plan-name">Plano Anual</h3>
+                    <div class="plan-price">R$ 249,90</div>
+                    <div class="plan-period">12 meses (R$ 20,82/mês)</div>
+                    <ul class="plan-features">
+                        <li>Todos os canais</li>
+                        <li>Qualidade HD/4K</li>
+                        <li>Suporte 24/7</li>
+                        <li>Telas ilimitadas</li>
+                        <li>Economia de R$ 108,90</li>
+                    </ul>
+                    <a href="#" class="cta-btn">Assinar Agora</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">O Que Nossos Clientes Dizem</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Incrível! Cancelei minha TV a cabo e economizo mais de R$ 100 por mês. A qualidade é excelente e nunca trava."</p>
+                    <div class="testimonial-author">
+                        <img src="/placeholder.svg?height=50&width=50" alt="Cliente" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Maria Silva</h4>
+                            <p>São Paulo, SP</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Melhor investimento que fiz! Assisto todos os jogos do meu time em HD e ainda tenho acesso a Netflix e outros streamings."</p>
+                    <div class="testimonial-author">
+                        <img src="/placeholder.svg?height=50&width=50" alt="Cliente" class="author-avatar">
+                        <div class="author-info">
+                            <h4>João Santos</h4>
+                            <p>Rio de Janeiro, RJ</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"O suporte é fantástico! Sempre que preciso, me atendem rapidamente pelo WhatsApp. Super recomendo!"</p>
+                    <div class="testimonial-author">
+                        <img src="/placeholder.svg?height=50&width=50" alt="Cliente" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Ana Costa</h4>
+                            <p>Belo Horizonte, MG</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Perguntas Frequentes</h2>
+            <div class="faq-item">
+                <button class="faq-question">
+                    Funciona fora do Brasil?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Sim! Nosso serviço funciona em qualquer lugar do mundo com conexão à internet. Perfeito para brasileiros no exterior.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    Preciso de antena ou equipamento especial?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Não! Você só precisa de uma conexão à internet. Funciona em Smart TVs, TV Box, celulares, tablets e computadores.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    Como faço o pagamento?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Aceitamos PIX, cartão de crédito, débito e transferência bancária. O pagamento é seguro e processado instantaneamente.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    É possível testar antes de assinar?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Claro! Oferecemos 24 horas de teste grátis para você conhecer nosso serviço sem compromisso.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    Funciona em várias TVs ao mesmo tempo?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Sim! Dependendo do plano escolhido, você pode assistir em 3, 5 ou telas ilimitadas simultaneamente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>StreamMax IPTV</h3>
+                    <p>A melhor experiência em entretenimento digital. Canais, filmes, séries e esportes na palma da sua mão.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contato</h3>
+                    <a href="https://wa.me/5511999999999">📱 WhatsApp: (11) 99999-9999</a>
+                    <a href="mailto:contato@streammax.com">✉️ contato@streammax.com</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Redes Sociais</h3>
+                    <div class="social-links">
+                        <a href="#">📱</a>
+                        <a href="#">📷</a>
+                        <a href="#">📘</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <a href="#">Termos de Uso</a>
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Política de Reembolso</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 StreamMax IPTV. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-question span').textContent = '+';
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                    button.querySelector('span').textContent = '-';
+                }
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 10, 10, 0.98)';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
